@@ -1,5 +1,5 @@
 <template>
-  <t-aside>
+  <t-aside :width="collapsed ? '64px' : '232px'">
     <div class="menu">
       <t-menu :collapsed="collapsed">
         <t-menu-item value="0">

@@ -3,7 +3,12 @@
     <t-layout>
       <sidebar :collapsed="collapsed"></sidebar>
       <t-layout>
-        <t-header><t-button @click="toggleSidebar">点我</t-button></t-header>
+        <t-header
+          ><Header
+            :collapsed="collapsed"
+            @on-toggle-collapsed="toggleCollapsed"
+          ></Header
+        ></t-header>
         <t-content><router-view /></t-content>
         <t-footer>底部区域</t-footer>
       </t-layout>
@@ -13,17 +18,19 @@
 
 <script>
 import Sidebar from "@/views/Sidebar.vue";
+import Header from "@/views/Header.vue";
+
 export default {
   name: "Layout",
-  components: { Sidebar },
+  components: { Sidebar, Header },
   data() {
     return {
       collapsed: false,
     };
   },
   methods: {
-    toggleSidebar() {
-      this.collapsed = !this.collapsed;
+    toggleCollapsed(collapsed) {
+      this.collapsed = collapsed;
     },
   },
 };
