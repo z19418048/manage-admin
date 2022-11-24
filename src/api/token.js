@@ -1,6 +1,6 @@
 import { post } from "./request";
-const create = (usrname, password) => {
-  return post("/tokens", { usrname, password });
+const create = ({ username, password }) => {
+  return post("/tokens", { username, password });
 };
 
 export default {

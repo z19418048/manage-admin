@@ -40,7 +40,7 @@
 
 <script>
 import { Icon } from "tdesign-icons-vue";
-import { tokenApi } from "@/api/token.js";
+import tokenApi from "@/api/token.js";
 export default {
   name: "Login",
   components: { Icon },
@@ -53,7 +53,7 @@ export default {
     };
   },
   mounted() {
-    tokenApi.create();
+    tokenApi.create({ username: "admin", password: "admin123" });
   },
 };
 </script>

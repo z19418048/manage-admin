@@ -3,7 +3,6 @@ export default [
     url: "/tokens",
     type: "post",
     response: (req) => {
-      console.log(1111);
       const { username, password } = req.body;
       if (username === "admin" && password === "admin123") {
         return "token-1111111";
