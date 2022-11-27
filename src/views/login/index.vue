@@ -2,13 +2,15 @@
   <div class="login">
     <div class="title">Manage Admin</div>
     <t-form
-      v-model="formData"
+      :data="formData"
       class="form"
       ref="form"
       :colon="true"
       :labelWidth="0"
+      :rules="rules"
+      @submit="handleLogin"
     >
-      <t-form-item name="account">
+      <t-form-item name="username">
         <t-input
           v-model="formData.username"
           clearable
@@ -32,7 +34,9 @@
         </t-input>
       </t-form-item>
       <t-form-item>
-        <t-button theme="primary" type="submit" block>登录</t-button>
+        <t-button theme="primary" type="submit" block :loading="loading">{{
+          loading ? "登录中" : "登录"
+        }}</t-button>
       </t-form-item>
     </t-form>
   </div>
@@ -40,7 +44,7 @@
 
 <script>
 import { Icon } from "tdesign-icons-vue";
-import tokenApi from "@/api/token.js";
+
 export default {
   name: "Login",
   components: { Icon },
@@ -50,10 +54,38 @@ export default {
         username: "",
         password: "",
       },
+      loading: false,
+      rules: {
+        username: [
+          { required: true, message: "用户名不能为空" },
+          {
+            min: 4,
+            message: "用户名至少4个字符,一个中文等于两个字符",
+          },
+        ],
+        password: [
+          { required: true, message: "密码不能为空" },
+          {
+            min: 6,
+            message: "至少需要六个字符",
+          },
+        ],
+      },
     };
   },
-  mounted() {
-    tokenApi.create({ username: "admin", password: "admin123" });
+  methods: {
+    handleLogin({ validateResult }) {
+      this.loading = true;
+      validateResult === true &&
+        this.$store
+          .dispatch("login", this.formData)
+          .then(() => {
+            this.$router.replace({ path: this.$route.query.redirect || "/" });
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+    },
   },
 };
 </script>

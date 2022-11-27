@@ -17,7 +17,7 @@ files.keys().forEach((key) => {
   };
 });
 
-const state = () => ({ tolen: null });
+const state = () => ({ token: "" });
 
 export default new Vuex.Store({
   state,
