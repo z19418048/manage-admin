@@ -80,7 +80,7 @@ export default {
         this.$store
           .dispatch("login", this.formData)
           .then(() => {
-            this.$router.replace({ path: this.$route.query.redirect || "/" });
+            this.$router.push({ path: this.$route.query.redirect || "/" });
           })
           .finally(() => {
             this.loading = false;

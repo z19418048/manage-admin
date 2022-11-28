@@ -1,7 +1,8 @@
+import storage from "@/utils/storage.js";
 import Vue from "vue";
 import Vuex, { createLogger } from "vuex";
-import { actions } from "./actions";
-import { mutations } from "./mutations";
+import { actions } from "./actions.js";
+import { mutations } from "@/store/mutations.js";
 
 Vue.use(Vuex);
 
@@ -17,7 +18,7 @@ files.keys().forEach((key) => {
   };
 });
 
-const state = () => ({ token: "" });
+const state = () => ({ token: storage.get("token") });
 
 export default new Vuex.Store({
   state,
