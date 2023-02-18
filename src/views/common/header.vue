@@ -4,13 +4,14 @@
       ><menu-fold-icon v-if="collapsed" slot="icon" />
       <menu-unfold-icon v-if="!collapsed" slot="icon"
     /></t-button>
+
     <div class="operation-area">
       <t-dropdown
         @click="handleDropdownClick"
         :options="[{ content: '退出登录', value: 'logout' }]"
       >
         <t-button shape="circle" size="large" variant="text"
-          ><t-avatar size="large">子龍</t-avatar></t-button
+          ><t-avatar size="large">{{ user.nickname }}</t-avatar></t-button
         >
       </t-dropdown>
     </div>
@@ -33,6 +34,11 @@ export default {
       default: false,
     },
   },
+  data: function () {
+    return {
+      user: this.$store.state.user,
+    };
+  },
   methods: {
     ...mapActions(["logout"]),
     toggleCollapsed() {
@@ -51,6 +57,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .header {
   width: 100%;
@@ -58,9 +65,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // padding: 0 20px;
-}
-.header .operation-area {
-  margin-right: 20px;
+  padding: 0 20px;
 }
 </style>
