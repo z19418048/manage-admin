@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <div class="title">Manage Admin</div>
+    <div class="title">YiLi Admin</div>
     <t-form
       :data="formData"
       class="form"
@@ -41,7 +41,6 @@
     </t-form>
   </div>
 </template>
-
 <script>
 import { Icon } from "tdesign-icons-vue";
 
@@ -60,7 +59,7 @@ export default {
           { required: true, message: "用户名不能为空" },
           {
             min: 4,
-            message: "用户名至少4个字符,一个中文等于两个字符",
+            message: "至少需要四个字符，一个中文等于两个字符",
           },
         ],
         password: [
@@ -79,8 +78,11 @@ export default {
       validateResult === true &&
         this.$store
           .dispatch("login", this.formData)
-          .then(() => {
-            this.$router.push({ path: this.$route.query.redirect || "/" });
+          .then(async () => {
+            await this.$store.dispatch("user/fetchCurrentUserInfo");
+            await this.$router.push({
+              path: this.$route.query.redirect || "/",
+            });
           })
           .finally(() => {
             this.loading = false;
@@ -94,7 +96,7 @@ export default {
 .login {
   width: 100vw;
   height: 100vh;
-  background: #f3f3f3;
+  background-color: #f3f3f3;
   display: flex;
   flex-direction: column;
   justify-content: center;

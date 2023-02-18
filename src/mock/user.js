@@ -13,4 +13,16 @@ export default [
       };
     },
   },
+  {
+    url: "/users/me",
+    type: "get",
+    response: () => {
+      return {
+        nickname: "依力",
+        username: "admin",
+        roles: ["admin"],
+        permissions: ["dashboard", "user", "user:list", "user:roles"],
+      };
+    },
+  },
 ];

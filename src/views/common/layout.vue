@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <t-layout>
-      <sidebar :collapsed="collapsed"></sidebar>
+    <t-layout
+      ><sidebar :collapsed="collapsed"></sidebar>
       <t-layout>
         <t-header
           ><Header
@@ -35,7 +35,8 @@ export default {
   },
 };
 </script>
-<style scoped>
+
+<style lang="scss" scoped>
 .main {
   width: 100vw;
   height: 100vh;
