@@ -1,4 +1,4 @@
-# admin-admin
+# manage-admin
 
 ## Project setup
 ```
