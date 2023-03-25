@@ -1,4 +1,4 @@
-# yili-admin
+# admin-admin
 
 ## Project setup
 ```
